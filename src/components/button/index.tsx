@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({ loading, children, className, ...props 
       )}
       {...props}
     >
-      {loading && <Loader color="white" />}
+      {loading && <Loader />}
       {children}
     </button>
   );
