@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function LoginPage() {
   return (
-    <main className="md:max-w-lg h-screen mx-auto flex flex-col justify-center p-6 gap-5">
+    <main className="md:max-w-lg w-full h-screen mx-auto flex flex-col justify-center p-6 gap-5">
       <div>
         <h1 className="text-2xl font-bold leading-10">Login</h1>
         <div className="flex gap-2">
