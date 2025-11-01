@@ -1,18 +1,17 @@
 'use client';
+import { useConversation } from '@/context/use-conversation';
 import { useAuth } from '@/hooks/use-auth';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
-import { Conversation } from '@/types/conversation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Conversations from './conversations';
 import Separator from '../separator';
+import Conversations from './conversations';
 import SidebarFooter from './footer';
 import SidebarHeader from './header';
-import { usePathname } from 'next/navigation';
-import { useIsMobile } from '@/hooks/use-mobile';
 
-export type AsideProps = { conversations: Conversation[] };
-
-const Aside: React.FC<AsideProps> = ({ conversations }) => {
+const Aside: React.FC = () => {
+  const { conversations } = useConversation();
   const { profile } = useAuth();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();

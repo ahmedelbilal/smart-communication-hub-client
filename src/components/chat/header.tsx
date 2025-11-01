@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import User from '../user';
 import Button from '../button';
+import { User as UserType } from '@/types/user';
 
 type ChatHeaderProps = {
-  user: { id: string; name: string };
+  user: UserType;
   onToggleInsights: () => void;
   insightsVisible: boolean;
 };
@@ -11,7 +12,7 @@ type ChatHeaderProps = {
 const ChatHeader: React.FC<ChatHeaderProps> = ({ user, onToggleInsights, insightsVisible }) => {
   return (
     <div className="flex items-center justify-between p-4">
-      <User className="p-0 hover:bg-transparent w-fit" user={{ id: user.id, name: user.name }} />
+      <User className="p-0 hover:bg-transparent w-fit" user={user} />
       {!insightsVisible && (
         <Button
           onClick={onToggleInsights}
