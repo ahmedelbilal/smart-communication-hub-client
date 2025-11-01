@@ -1,5 +1,6 @@
 'use client';
 
+import Avatar from '@/components/avatar';
 import { useAuth } from '@/hooks/use-auth';
 import { useSocket } from '@/hooks/use-socket';
 import { Conversation } from '@/types/conversation';
@@ -43,11 +44,7 @@ export const ConversationProvider: React.FC<{ children: React.ReactNode }> = ({ 
         toast.custom(() => (
           <div className="max-w-md w-full bg-white shadow-lg rounded-lg ring-1 ring-black ring-opacity-5">
             <div className="p-4 flex items-start">
-              {/* <img
-                className="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                alt=""
-              /> */}
+              <Avatar text={message.sender.name} />
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-900">New message received</p>
                 <p className="mt-1 text-sm text-gray-500">{message.content}</p>
