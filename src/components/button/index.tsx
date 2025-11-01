@@ -11,12 +11,12 @@ const Button: React.FC<ButtonProps> = ({ loading, children, className, ...props 
   return (
     <button
       className={cn(
-        'flex items-center justify-center gap-4 bg-black text-white w-full p-4 rounded-2xl hover:bg-black/80 disabled:bg-black/80',
+        'flex items-center justify-center gap-4 bg-black text-white w-full p-4 rounded-2xl hover:bg-black/80 disabled:bg-black/80 transition cursor-pointer',
         className
       )}
       {...props}
     >
-      {loading && <Loader color="white" />}
+      {loading && <Loader />}
       {children}
     </button>
   );
