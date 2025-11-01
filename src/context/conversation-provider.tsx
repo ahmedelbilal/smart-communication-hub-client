@@ -31,7 +31,7 @@ export const ConversationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   const sendMessage = (message: SendMessageDto) => {
     if (!socket) return;
-    socket.current?.emit('send_message', message);
+    socket.emit('send_message', message);
   };
 
   useEffect(() => {
@@ -60,12 +60,12 @@ export const ConversationProvider: React.FC<{ children: React.ReactNode }> = ({ 
       else router.push(`/c/${message.conversation?.id}`);
     };
 
-    socket.current?.on('new_message', handleNewMessage);
-    socket.current?.on('message_sent', handleMessageSent);
+    socket.on('new_message', handleNewMessage);
+    socket.on('message_sent', handleMessageSent);
 
     return () => {
-      socket.current?.off('new_message', handleNewMessage);
-      socket.current?.off('message_sent', handleMessageSent);
+      socket.off('new_message', handleNewMessage);
+      socket.off('message_sent', handleMessageSent);
     };
   }, [socket, activeConversation?.id, profile?.id, router]);
 
