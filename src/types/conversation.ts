@@ -6,5 +6,5 @@ export type Conversation = {
   id?: string;
   user: User;
   messages: Message[];
-  insight: Insight | null;
+  insight?: Insight | null;
 };
