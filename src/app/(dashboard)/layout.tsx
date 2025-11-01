@@ -30,8 +30,8 @@ export default async function RootLayout({
     <AuthProvider profile={profile} token={token}>
       <Toaster position="top-center" reverseOrder={false} />
       <SocketProvider>
-        <ConversationProvider>
-          <Aside conversations={conversations} />
+        <ConversationProvider conversations={conversations}>
+          <Aside />
           {children}
         </ConversationProvider>
       </SocketProvider>
