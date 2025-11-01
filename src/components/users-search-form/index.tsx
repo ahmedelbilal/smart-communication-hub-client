@@ -36,12 +36,17 @@ const UsersSearchForm: React.FC<UsersSearchFormProps> = ({ initUsers, onUserClic
       <Input
         type="search"
         placeholder="Email or Name"
+        disabled={pending || !initUsers.length}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
       {pending && <Loader className="mx-auto" />}
 
-      {!users?.length && !pending && <p className="text-center">No Results</p>}
+      {!users?.length && !pending && !!initUsers.length && (
+        <p className="text-center">No Results</p>
+      )}
+
+      {!initUsers.length && <p className="text-center">We don&apos;t have users right now</p>}
 
       {!!users?.length && !pending && <Users users={users} onClick={onUserClick} />}
     </div>
