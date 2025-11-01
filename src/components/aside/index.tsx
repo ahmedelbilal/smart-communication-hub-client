@@ -14,7 +14,7 @@ export type AsideProps = { conversations: Conversation[] };
 
 const Aside: React.FC<AsideProps> = ({ conversations }) => {
   const { profile } = useAuth();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const toggleSidebar = () => {
