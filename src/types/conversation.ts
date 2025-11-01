@@ -2,7 +2,7 @@ import { Message } from './message';
 import { User } from './user';
 
 export type Conversation = {
-  id: string;
+  id?: string;
   user: User;
-  messages?: Message[];
+  messages: Message[];
 };
