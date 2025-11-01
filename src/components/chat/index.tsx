@@ -1,40 +1,39 @@
 'use client';
-import { useSocketContext } from '@/context/socket-provider';
-import { Message } from '@/types/message';
-import { User } from '@/types/user';
 import { useEffect, useState } from 'react';
 import Insights from '../insights';
 import Separator from '../separator';
 import ChatBody from './body';
 import ChatFooter from './footer';
 import ChatHeader from './header';
+import { Conversation } from '@/types/conversation';
+import { useConversation } from '@/context/use-conversation';
 
 export type ChatProps = {
-  receiver: User;
-  initMessages?: Message[];
+  conversation: Conversation;
 };
 
-const Chat: React.FC<ChatProps> = ({ initMessages, receiver }) => {
-  const { setMessages, messages } = useSocketContext();
-  const [showInsights, setShowInsights] = useState(false);
+const Chat: React.FC<ChatProps> = ({ conversation }) => {
+  const { activeConversation, setActiveConversation } = useConversation();
+  const [showInsights, setShowInsights] = useState(true);
   const toggleInsights = () => {
     setShowInsights(!showInsights);
   };
   useEffect(() => {
-    if (initMessages) setMessages(initMessages);
-  }, [initMessages]);
+    setActiveConversation(conversation || null);
+    return () => setActiveConversation(null);
+  }, [conversation]);
 
   return (
     <>
       <div className="w-full h-full flex flex-col justify-center grow relative">
         <ChatHeader
           onToggleInsights={toggleInsights}
-          user={receiver}
+          user={conversation.user}
           insightsVisible={showInsights}
         />
         <Separator />
-        <ChatBody messages={messages} />
-        <ChatFooter className="sticky" receiver={receiver} />
+        <ChatBody messages={activeConversation?.messages} />
+        <ChatFooter className="sticky" receiver={conversation.user} />
       </div>
       {showInsights && <Insights onClose={toggleInsights} />}
     </>
