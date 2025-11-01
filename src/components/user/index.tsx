@@ -20,6 +20,12 @@ const User: React.FC<UserProps> = ({ user, active, className, ...props }) => {
     >
       <div className="relative">
         <Avatar className="bg-amber-300 md:w-10 md:h-10" text={user.name} />
+        <div
+          className={cn(
+            'w-3 h-3 absolute bottom-0 right-0 z-10 rounded-full',
+            user.online && 'bg-green-500'
+          )}
+        />
       </div>
       <span className="first-letter:uppercase collapsable">{user.name}</span>
     </div>
