@@ -19,22 +19,24 @@ const Chat: React.FC<ChatProps> = ({ conversation }) => {
     setShowInsights(!showInsights);
   };
   useEffect(() => {
-    setActiveConversation(conversation || null);
+    setActiveConversation(conversation);
     return () => setActiveConversation(null);
   }, [conversation]);
 
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-center grow relative">
-        <ChatHeader
-          onToggleInsights={toggleInsights}
-          user={conversation.user}
-          insightsVisible={showInsights}
-        />
-        <Separator />
-        <ChatBody messages={activeConversation?.messages} />
-        <ChatFooter className="sticky" receiver={conversation.user} />
-      </div>
+      {activeConversation && (
+        <div className="w-full h-full flex flex-col justify-center grow relative">
+          <ChatHeader
+            onToggleInsights={toggleInsights}
+            user={activeConversation.user}
+            insightsVisible={showInsights}
+          />
+          <Separator />
+          <ChatBody messages={activeConversation.messages} />
+          <ChatFooter className="sticky" receiver={activeConversation.user} />
+        </div>
+      )}
       {showInsights && <Insights onClose={toggleInsights} />}
     </>
   );
