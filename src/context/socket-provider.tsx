@@ -1,3 +1,4 @@
+'use client';
 import { SOCKET_URL } from '@/constants';
 import { useAuth } from '@/hooks/use-auth';
 import React, { createContext, useEffect, useRef, useState } from 'react';
