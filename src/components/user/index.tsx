@@ -3,15 +3,19 @@ import { User as UserType } from '@/types/user';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import Avatar from '../avatar';
 
-export type UserProps = { user: UserType } & DetailedHTMLProps<
+export type UserProps = { user: UserType; active?: boolean } & DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >;
 
-const User: React.FC<UserProps> = ({ user, className, ...props }) => {
+const User: React.FC<UserProps> = ({ user, active, className, ...props }) => {
   return (
     <div
-      className={cn('w-full hover:bg-gray-100 p-2 rounded-xl flex items-center gap-2', className)}
+      className={cn(
+        'w-full hover:bg-gray-100 p-2 rounded-xl flex items-center gap-2',
+        active && 'bg-gray-100',
+        className
+      )}
       {...props}
     >
       <div className="relative">

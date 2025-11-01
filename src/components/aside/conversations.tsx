@@ -1,16 +1,22 @@
 import { Conversation } from '@/types/conversation';
 import Link from 'next/link';
 import User from '../user';
+import { usePathname } from 'next/navigation';
 
 export type ConversationsProps = {
   conversations: Conversation[];
 };
 const Conversations: React.FC<ConversationsProps> = ({ conversations }) => {
+  const pathname = usePathname();
+
   return (
-    <div className="grow">
+    <div className="grow flex flex-col gap-y-2">
       {conversations.map((conversation) => (
         <Link href={`/c/${conversation.id}`} key={conversation.id}>
-          <User user={{ id: conversation.user.id, name: conversation.user.name }} />
+          <User
+            active={pathname.includes(conversation.id || '')}
+            user={{ id: conversation.user.id, name: conversation.user.name }}
+          />
         </Link>
       ))}
     </div>
