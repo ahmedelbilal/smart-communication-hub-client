@@ -37,7 +37,7 @@ const Chat: React.FC<ChatProps> = ({ conversation }) => {
           <ChatFooter className="sticky" receiver={activeConversation.user} />
         </div>
       )}
-      {showInsights && <Insights onClose={toggleInsights} />}
+      {showInsights && <Insights conversation={conversation} onClose={toggleInsights} />}
     </>
   );
 };
