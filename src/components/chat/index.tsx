@@ -14,7 +14,7 @@ export type ChatProps = {
 
 const Chat: React.FC<ChatProps> = ({ conversation }) => {
   const { activeConversation, setActiveConversation } = useConversation();
-  const [showInsights, setShowInsights] = useState(true);
+  const [showInsights, setShowInsights] = useState(false);
   const toggleInsights = () => {
     setShowInsights(!showInsights);
   };
