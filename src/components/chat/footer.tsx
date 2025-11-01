@@ -1,18 +1,18 @@
 'use client';
 
-import { useSocketContext } from '@/context/socket-provider';
-import React, { useState } from 'react';
-import Input from '../input';
-import Button from '../button';
-import { User } from '@/types/user';
 import { cn } from '@/lib/utils';
+import { User } from '@/types/user';
+import React, { useState } from 'react';
+import Button from '../button';
+import Input from '../input';
+import { useConversation } from '@/context/use-conversation';
 
 export type ChatFooterProps = {
   receiver: User;
 } & React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>;
 
 const ChatFooter: React.FC<ChatFooterProps> = ({ receiver, className, ...props }) => {
-  const { sendMessage } = useSocketContext();
+  const { sendMessage } = useConversation();
   const [text, setText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
