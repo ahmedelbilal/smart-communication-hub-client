@@ -56,11 +56,8 @@ export const ConversationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     };
 
     const handleMessageSent = (message: Message) => {
-      if (activeConversation?.id === message.conversation?.id) {
-        appendMessage(message);
-      } else if (message.sender.id === profile?.id) {
-        router.push(`/c/${message.conversation?.id}`);
-      }
+      if (activeConversation?.id === message.conversation?.id) appendMessage(message);
+      else router.push(`/c/${message.conversation?.id}`);
     };
 
     socket.current?.on('new_message', handleNewMessage);
