@@ -33,7 +33,11 @@ export async function registerAction(
   if (!res.ok) return { message: data.message, success: false };
 
   const cookiesObj = await cookies();
-  cookiesObj.set('access_token', data.access_token);
+  cookiesObj.set('access_token', data.access_token, {
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+  });
 
   redirect('/');
 }
